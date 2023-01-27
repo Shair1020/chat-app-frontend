@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import Logo from "../assets/logo.svg";
@@ -67,6 +67,13 @@ const Register = () => {
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("chat-app-user"));
+    if (user) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <>
