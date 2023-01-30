@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ChatContainer } from "../styled-componet/ChatContainer";
+import Contact from "../components/Contact";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { allUsersRoute } from "../utils/APIRoute";
@@ -28,13 +29,15 @@ const Chat = () => {
   }, [navigate, currentUser]);
 
   const getAllUser = async (currentUser) => {
-    const { data } = await axios.get(`${allUsersRoute }/${currentUser._id}}`);
+    const { data } = await axios.get(`${allUsersRoute}/${currentUser._id}}`);
     console.log(data, "🔥");
     setContacts(data.data);
   };
   return (
     <ChatContainer>
-      <div className="container"></div>
+      <div className="container">
+        <Contact contacts={contacts} currentUser={currentUser} />
+      </div>
     </ChatContainer>
   );
 };
